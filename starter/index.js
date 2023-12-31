@@ -93,7 +93,6 @@ var total = 0
 for (let i = 0; i < finances.length; i++) {
   const arr = finances[i];
   total += arr[1]
-  
 }
 
 // Identify unique months and count
@@ -116,13 +115,42 @@ for (let i = 1; i < finances.length; i++) {
 }
 
 // Calculate the average change
-var averageChange = totalChange / (totalMonths-1);
-averageChange = Number(averageChange.toFixed(2));
+var averageChange = totalChange / (totalMonths - 1);
 
+// Greatest increase in profits    
+var greatestIncrease = {
+  date: '',
+  amount: 0
+};
 
+for (let i = 1; i < finances.length; i++) {
+  const profitIncrease = finances[i][1] - finances[i - 1][1];
+  if (profitIncrease > greatestIncrease.amount) {
+    greatestIncrease.amount = profitIncrease;
+    greatestIncrease.date = finances[i][0];
+  }
+}
 
+// Greatest decrease in profits
+var greatestDecrease = {
+  date: '',
+  amount: 0
+};
+
+for (let i = 1; i < finances.length; i++) {
+  const profitDecrease = finances[i][1] - finances[i - 1][1];
+  if (profitDecrease < greatestDecrease.amount) {
+    greatestDecrease.amount = profitDecrease;
+    greatestDecrease.date = finances[i][0];
+  }
+}
 
 // Print variables to console log
+// Contatenation uses template literals to combine titles (strings) and variables
+console.log("Financial Analysis")
+console.log("----------------------------")
 console.log(`Total: \$${total}`);
 console.log(`Total Months: ${totalMonths}`);
-console.log(`Average Change: $${averageChange}`);
+console.log(`Average Change: \$${averageChange.toFixed(2)}`);
+console.log(`Greatest Increase in Profits/Losses: ${greatestIncrease.date} (\$${greatestIncrease.amount})`);
+console.log(`Greatest Decrease in Profits/Losses: ${greatestDecrease.date} (\$${greatestDecrease.amount})`);
