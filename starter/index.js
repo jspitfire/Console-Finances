@@ -105,7 +105,24 @@ for (let i = 0; i < finances.length; i++) {
 
 var totalMonths = uniqueMonths.size;
 
+// Monthly change in profits
+var totalChange = 0;
+for (let i = 1; i < finances.length; i++) {
+  const currentMonthProfit = finances[i][1];
+  const previousMonthProfit = finances[i - 1][1];
+  const monthlyChange = currentMonthProfit - previousMonthProfit;
+
+  totalChange += monthlyChange;
+}
+
+// Calculate the average change
+var averageChange = totalChange / (totalMonths-1);
+averageChange = Number(averageChange.toFixed(2));
+
+
+
 
 // Print variables to console log
 console.log(`Total: \$${total}`);
 console.log(`Total Months: ${totalMonths}`);
+console.log(`Average Change: $${averageChange}`);
