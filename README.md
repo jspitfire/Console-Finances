@@ -1,4 +1,4 @@
-# Console-Finances
+# Financial dataset analysis using javascript
 
 ## The index.js file was updated to provide analysis of a financial dataset containing profit/loss figures over 86 months.
 Analysis using javascript was developed to provide the following outputs in the console:
